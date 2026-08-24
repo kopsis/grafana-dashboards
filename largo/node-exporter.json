@@ -24084,7 +24084,9 @@
                   }
                 }
               ],
-              "queryOptions": {},
+              "queryOptions": {
+                "interval": "5m"
+              },
               "transformations": []
             }
           },
@@ -27997,6 +27999,18 @@
         "keepTime": false,
         "tags": [],
         "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/kopsis/grafana-dashboards/blob/main/largo/node-exporter.json"
+      },
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
         "title": "GitHub",
         "tooltip": "",
         "type": "link",
@@ -28019,7 +28033,7 @@
     "preload": false,
     "tags": [],
     "timeSettings": {
-      "autoRefresh": "1m",
+      "autoRefresh": "5m",
       "autoRefreshIntervals": [
         "5s",
         "10s",
