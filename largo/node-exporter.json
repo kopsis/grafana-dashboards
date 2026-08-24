@@ -23380,7 +23380,9 @@
                   }
                 }
               ],
-              "queryOptions": {},
+              "queryOptions": {
+                "interval": "5m"
+              },
               "transformations": []
             }
           },
