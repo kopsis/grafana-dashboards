@@ -48,7 +48,7 @@
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
-                        "editorMode": "builder",
+                        "editorMode": "code",
                         "expr": "(increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[30s]) / increase(docker_container_cpu_capacity_total[30s])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[1m]) / increase(docker_container_cpu_capacity_total[1m])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[3m]) / increase(docker_container_cpu_capacity_total[3m])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[5m]) / increase(docker_container_cpu_capacity_total[5m]))",
                         "interval": "60",
                         "legendFormat": "{{instance}} / {{name}}",
@@ -218,6 +218,77 @@
       "to": "now"
     },
     "title": "Docker - container summary (Prometheus)",
-    "variables": []
+    "variables": [
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "allValue": "All",
+          "allowCustomValue": false,
+          "current": {
+            "text": "ha-server-1.kopsis.lan:9417",
+            "value": "ha-server-1.kopsis.lan:9417"
+          },
+          "definition": "label_values(instance)",
+          "hide": "dontHide",
+          "includeAll": true,
+          "multi": false,
+          "name": "instances",
+          "options": [],
+          "query": {
+            "datasource": {
+              "name": "c1a45db4-318d-4193-a277-7ca2e99c2e78"
+            },
+            "group": "prometheus",
+            "kind": "DataQuery",
+            "spec": {
+              "qryType": 1,
+              "query": "label_values(instance)",
+              "refId": "PrometheusVariableQueryEditor-VariableQuery"
+            },
+            "version": "v0"
+          },
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "regexApplyTo": "value",
+          "skipUrlSync": false,
+          "sort": "disabled"
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "allValue": "All",
+          "allowCustomValue": false,
+          "current": {
+            "text": "All",
+            "value": "$__all"
+          },
+          "definition": "label_values(container)",
+          "hide": "dontHide",
+          "includeAll": true,
+          "multi": false,
+          "name": "containers",
+          "options": [],
+          "query": {
+            "datasource": {
+              "name": "c1a45db4-318d-4193-a277-7ca2e99c2e78"
+            },
+            "group": "prometheus",
+            "kind": "DataQuery",
+            "spec": {
+              "qryType": 1,
+              "query": "label_values(container)",
+              "refId": "PrometheusVariableQueryEditor-VariableQuery"
+            },
+            "version": "v0"
+          },
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "regexApplyTo": "value",
+          "skipUrlSync": false,
+          "sort": "disabled"
+        }
+      }
+    ]
   }
 }
