@@ -29,20 +29,169 @@
     "cursorSync": "Off",
     "description": "Container state and resource usage as collected from prometheus-net/docker_exporter",
     "editable": true,
-    "elements": {},
-    "layout": {
-      "kind": "GridLayout",
-      "spec": {
-        "items": []
+    "elements": {
+      "panel-1": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "c1a45db4-318d-4193-a277-7ca2e99c2e78"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "(increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[30s]) / increase(docker_container_cpu_capacity_total[30s])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[1m]) / increase(docker_container_cpu_capacity_total[1m])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[3m]) / increase(docker_container_cpu_capacity_total[3m])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[5m]) / increase(docker_container_cpu_capacity_total[5m]))",
+                        "interval": "60",
+                        "legendFormat": "{{instance}} / {{name}}",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 1,
+          "links": [],
+          "title": "CPU %",
+          "vizConfig": {
+            "group": "timeseries",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  }
+                },
+                "overrides": []
+              },
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              }
+            },
+            "version": "13.0.12"
+          }
+        }
       }
     },
-    "links": [],
+    "layout": {
+      "kind": "AutoGridLayout",
+      "spec": {
+        "columnWidthMode": "standard",
+        "items": [
+          {
+            "kind": "AutoGridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-1"
+              }
+            }
+          }
+        ],
+        "maxColumnCount": 3,
+        "rowHeightMode": "standard"
+      }
+    },
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/kopsis/grafana-dashboards/blob/main/largo/docker-container-summary-prometheus.json"
+      }
+    ],
     "liveNow": false,
     "preferences": {
       "layout": {
-        "kind": "GridLayout",
+        "kind": "AutoGridLayout",
         "spec": {
-          "items": []
+          "columnWidthMode": "standard",
+          "items": [],
+          "maxColumnCount": 3,
+          "rowHeightMode": "standard"
         }
       }
     },
