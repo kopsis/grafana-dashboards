@@ -48,11 +48,13 @@
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
-                        "editorMode": "code",
-                        "expr": "(increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[30s]) / increase(docker_container_cpu_capacity_total[30s])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[1m]) / increase(docker_container_cpu_capacity_total[1m])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[3m]) / increase(docker_container_cpu_capacity_total[3m])) \u003e 0 or (increase(docker_container_cpu_used_total{instance =~ \"$instances\", name =~ \"$containers\"}[5m]) / increase(docker_container_cpu_capacity_total[5m]))",
+                        "editorMode": "builder",
+                        "exemplar": false,
+                        "expr": "docker_container_cpu_used_total{instance=~\"$instances\", name=~\"$containers\"}",
+                        "instant": true,
                         "interval": "60",
                         "legendFormat": "{{instance}} / {{name}}",
-                        "range": true
+                        "range": false
                       },
                       "version": "v0"
                     },
@@ -60,7 +62,9 @@
                   }
                 }
               ],
-              "queryOptions": {},
+              "queryOptions": {
+                "interval": "60s"
+              },
               "transformations": []
             }
           },
@@ -198,7 +202,7 @@
     "preload": false,
     "tags": [],
     "timeSettings": {
-      "autoRefresh": "",
+      "autoRefresh": "1m",
       "autoRefreshIntervals": [
         "5s",
         "10s",
