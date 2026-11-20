@@ -48,7 +48,7 @@
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
-                        "editorMode": "code",
+                        "editorMode": "builder",
                         "exemplar": false,
                         "expr": "increase(docker_container_cpu_used_total{instance=~\"$instances\", name=~\"$containers\"}[$__rate_interval]) / (increase(docker_container_cpu_capacity_total{instance=~\"$instances\", name=~\"$containers\"}[$__rate_interval]))",
                         "instant": false,
@@ -265,7 +265,7 @@
       {
         "kind": "QueryVariable",
         "spec": {
-          "allValue": "All",
+          "allValue": "",
           "allowCustomValue": false,
           "current": {
             "text": "All",
