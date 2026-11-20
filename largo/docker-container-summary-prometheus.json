@@ -48,9 +48,9 @@
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
-                        "editorMode": "builder",
+                        "editorMode": "code",
                         "exemplar": false,
-                        "expr": "docker_container_cpu_used_total{instance=~\"$instances\", name=~\"$containers\"}",
+                        "expr": "increase(docker_container_cpu_used_total{instance=~\"$instances\", name=~\"$containers\"}[$__rate_interval]) / (increase(docker_container_cpu_capacity_total{instance=~\"$instances\", name=~\"$containers\"}[$__rate_interval]))",
                         "instant": true,
                         "interval": "60",
                         "legendFormat": "{{instance}} / {{name}}",
@@ -59,6 +59,44 @@
                       "version": "v0"
                     },
                     "refId": "A"
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "__expr__"
+                      },
+                      "group": "__expr__",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "conditions": [
+                          {
+                            "evaluator": {
+                              "params": [
+                                0,
+                                0
+                              ],
+                              "type": "gt"
+                            },
+                            "query": {
+                              "params": []
+                            },
+                            "reducer": {
+                              "params": [],
+                              "type": "last"
+                            },
+                            "type": "query"
+                          }
+                        ],
+                        "expression": "A",
+                        "type": "threshold"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "B"
                   }
                 }
               ],
@@ -232,7 +270,7 @@
             "text": "ha-server-1.kopsis.lan:9417",
             "value": "ha-server-1.kopsis.lan:9417"
           },
-          "definition": "label_values(instance)",
+          "definition": "label_values({job=\"docker\"},instance)",
           "hide": "dontHide",
           "includeAll": true,
           "label": "Instance",
@@ -247,7 +285,7 @@
             "kind": "DataQuery",
             "spec": {
               "qryType": 1,
-              "query": "label_values(instance)",
+              "query": "label_values({job=\"docker\"},instance)",
               "refId": "PrometheusVariableQueryEditor-VariableQuery"
             },
             "version": "v0"
@@ -265,10 +303,10 @@
           "allValue": "All",
           "allowCustomValue": false,
           "current": {
-            "text": "All",
-            "value": "$__all"
+            "text": "docker-socket-proxy",
+            "value": "docker-socket-proxy"
           },
-          "definition": "label_values(container)",
+          "definition": "label_values({job=\"docker\"},name)",
           "hide": "dontHide",
           "includeAll": true,
           "label": "Container",
@@ -283,7 +321,7 @@
             "kind": "DataQuery",
             "spec": {
               "qryType": 1,
-              "query": "label_values(container)",
+              "query": "label_values({job=\"docker\"},name)",
               "refId": "PrometheusVariableQueryEditor-VariableQuery"
             },
             "version": "v0"
