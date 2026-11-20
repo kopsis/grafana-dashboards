@@ -465,10 +465,17 @@
                               "value": 0.5
                             },
                             {
-                              "color": "green",
+                              "color": "dark-green",
                               "value": 0.6
                             }
                           ]
+                        }
+                      },
+                      {
+                        "id": "custom.cellOptions",
+                        "value": {
+                          "mode": "basic",
+                          "type": "color-background"
                         }
                       }
                     ]
@@ -486,7 +493,7 @@
                           "mode": "absolute",
                           "steps": [
                             {
-                              "color": "green",
+                              "color": "dark-green",
                               "value": 0
                             },
                             {
@@ -494,6 +501,13 @@
                               "value": 1
                             }
                           ]
+                        }
+                      },
+                      {
+                        "id": "custom.cellOptions",
+                        "value": {
+                          "mode": "basic",
+                          "type": "color-background"
                         }
                       }
                     ]
