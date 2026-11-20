@@ -51,52 +51,14 @@
                         "editorMode": "code",
                         "exemplar": false,
                         "expr": "increase(docker_container_cpu_used_total{instance=~\"$instances\", name=~\"$containers\"}[$__rate_interval]) / (increase(docker_container_cpu_capacity_total{instance=~\"$instances\", name=~\"$containers\"}[$__rate_interval]))",
-                        "instant": true,
+                        "instant": false,
                         "interval": "60",
                         "legendFormat": "{{instance}} / {{name}}",
-                        "range": false
+                        "range": true
                       },
                       "version": "v0"
                     },
                     "refId": "A"
-                  }
-                },
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "__expr__"
-                      },
-                      "group": "__expr__",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "conditions": [
-                          {
-                            "evaluator": {
-                              "params": [
-                                0,
-                                0
-                              ],
-                              "type": "gt"
-                            },
-                            "query": {
-                              "params": []
-                            },
-                            "reducer": {
-                              "params": [],
-                              "type": "last"
-                            },
-                            "type": "query"
-                          }
-                        ],
-                        "expression": "A",
-                        "type": "threshold"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "B"
                   }
                 }
               ],
@@ -153,6 +115,8 @@
                       "mode": "off"
                     }
                   },
+                  "max": 1,
+                  "min": 0,
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
@@ -165,7 +129,8 @@
                         "value": 80
                       }
                     ]
-                  }
+                  },
+                  "unit": "percentunit"
                 },
                 "overrides": []
               },
@@ -303,8 +268,8 @@
           "allValue": "All",
           "allowCustomValue": false,
           "current": {
-            "text": "docker-socket-proxy",
-            "value": "docker-socket-proxy"
+            "text": "All",
+            "value": "$__all"
           },
           "definition": "label_values({job=\"docker\"},name)",
           "hide": "dontHide",
