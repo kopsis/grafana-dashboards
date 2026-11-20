@@ -71,7 +71,7 @@
           "description": "",
           "id": 1,
           "links": [],
-          "title": "CPU %",
+          "title": "${instances} CPU %",
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
@@ -192,7 +192,7 @@
           "description": "",
           "id": 2,
           "links": [],
-          "title": "Memory Usage",
+          "title": "${instances} Memory Usage",
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
@@ -392,7 +392,7 @@
           "description": "",
           "id": 3,
           "links": [],
-          "title": "Status",
+          "title": "${instances} Status",
           "vizConfig": {
             "group": "table",
             "kind": "VizConfig",
