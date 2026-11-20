@@ -317,9 +317,9 @@
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
-                        "editorMode": "builder",
+                        "editorMode": "code",
                         "exemplar": false,
-                        "expr": "max(docker_container_running_state{instance=~\"$instances\", name=~\"$containers\"})",
+                        "expr": "docker_container_running_state{instance=~\"$instances\", name=~\"$containers\"}",
                         "format": "table",
                         "instant": true,
                         "legendFormat": "{{name}}",
@@ -371,6 +371,7 @@
                     "options": {
                       "excludeByName": {
                         "Time": true,
+                        "__name__": true,
                         "instance": true,
                         "job": true
                       },
@@ -410,7 +411,7 @@
                     "footer": {
                       "reducers": []
                     },
-                    "inspect": true,
+                    "inspect": false,
                     "minWidth": 50
                   },
                   "thresholds": {
@@ -539,7 +540,12 @@
                 "name": "panel-1"
               },
               "height": 10,
-              "width": 8,
+              "repeat": {
+                "direction": "h",
+                "mode": "variable",
+                "value": "instances"
+              },
+              "width": 24,
               "x": 0,
               "y": 0
             }
@@ -552,9 +558,14 @@
                 "name": "panel-2"
               },
               "height": 10,
-              "width": 8,
-              "x": 8,
-              "y": 0
+              "repeat": {
+                "direction": "h",
+                "mode": "variable",
+                "value": "instances"
+              },
+              "width": 24,
+              "x": 0,
+              "y": 10
             }
           },
           {
@@ -564,10 +575,15 @@
                 "kind": "ElementReference",
                 "name": "panel-3"
               },
-              "height": 9,
-              "width": 16,
+              "height": 10,
+              "repeat": {
+                "direction": "h",
+                "mode": "variable",
+                "value": "instances"
+              },
+              "width": 24,
               "x": 0,
-              "y": 10
+              "y": 20
             }
           }
         ]
