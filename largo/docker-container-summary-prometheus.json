@@ -356,7 +356,47 @@
                 }
               ],
               "queryOptions": {},
-              "transformations": []
+              "transformations": [
+                {
+                  "group": "reduce",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "includeTimeField": false,
+                      "labelsToFields": true,
+                      "mode": "seriesToRows",
+                      "reducers": [
+                        "last"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "group": "organize",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {},
+                      "includeByName": {},
+                      "indexByName": {},
+                      "orderBy": [],
+                      "orderByMode": "auto",
+                      "renameByName": {}
+                    }
+                  }
+                },
+                {
+                  "group": "groupingToMatrix",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "columnField": "Field",
+                      "rowField": "$containers",
+                      "valueField": "Last"
+                    }
+                  }
+                }
+              ]
             }
           },
           "description": "",
@@ -401,7 +441,7 @@
               },
               "options": {
                 "cellHeight": "sm",
-                "frameIndex": 0,
+                "frameIndex": 2,
                 "showHeader": true,
                 "sortBy": [
                   {
